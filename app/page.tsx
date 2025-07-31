@@ -1,5 +1,3 @@
-// app/page.tsx or pages/index.tsx
-
 export default function Home() {
   return (
     <main style={styles.container}>
@@ -17,23 +15,19 @@ const styles = {
     flexDirection: 'column' as const,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f4f4f4',
     fontFamily: 'sans-serif',
     textAlign: 'center' as const,
     padding: '0 1rem',
   },
   title: {
     fontSize: '2.5rem',
-    color: '#222',
     marginBottom: '0.5rem',
   },
   subtitle: {
     fontSize: '1.2rem',
-    color: '#555',
     marginBottom: '2rem',
   },
   credits: {
     fontSize: '0.9rem',
-    color: '#888',
   },
 };
