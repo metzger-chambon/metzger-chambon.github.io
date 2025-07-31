@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Metzger-chambon lab
 
 ## Getting Started
 
-First, run the development server:
+Clone the repository and install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone git@github.com:metzger-chambon/metzger-chambon.github.io.git
+npm install
 ```
+
+Run `next dev` or `npm run dev` locally or in codespaces to preview your work. You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+Keep the `main` branch as the stable production code that gets deployed to GitHub Pages.
+
+Use a different branch (e.g., `develop`) for ongoing development work.
+Push your commits there as often as you want.
+
+Once you’re happy with your changes, create a Pull Request from `dev` → `main`. Review, test, and merge. That merge triggers the deployment workflow and updates the live site.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Improving the Site
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Optional: Preview deployments on PRs (Advanced)
+You can configure GitHub Actions or use platforms like Vercel to create preview deployments on every PR.
+This lets you share a live preview URL before merging.
 
-## Learn More
+Vercel is the creator of Next.js and offers automatic preview deployments for every branch and PR — with zero config. Super easy.
+🚀 How to set it up with Vercel:
 
-To learn more about Next.js, take a look at the following resources:
+    Go to https://vercel.com and log in with GitHub.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    Click “Import Project” → Select your GitHub repo.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    Vercel detects your Next.js app automatically.
 
-## Deploy on Vercel
+    Accept the defaults:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+        Framework: Next.js
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+        Build command: next build
+
+        Output: .next (Vercel handles that internally)
+
+    Click “Deploy”.
+
+Once connected:
+
+✅ Every time you open or push to a PR → Vercel builds the branch and gives you a live preview URL
+✅ Merging to main deploys to your production site
