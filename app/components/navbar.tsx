@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { cn } from "@/lib/utils"; 
+import { cn } from "@/app/lib/utils"; 
 import { Menu } from 'lucide-react'
 
 export default function Navigation() {
