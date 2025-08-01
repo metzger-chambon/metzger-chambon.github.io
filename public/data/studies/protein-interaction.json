@@ -1,0 +1,33 @@
+{
+    "id": "protein-interaction",
+    "title": "Deep learning for protein-protein interaction prediction",
+    "description": "ML model predicting protein interactions with 95% accuracy.",
+    "authors": ["Dr. Emily Watson", "Dr. Sarah Chen", "Dr. Michael Zhang"],
+    "categories": {
+      "biologicalApplication": "Neuroscience",
+      "sequencingPlatform": {
+        "name": "Bulk RNA-seq"
+      }
+    },
+    "imageUrl":
+      "https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&w=600&h=200",
+    "doi": "10.1093/bioinformatics/btac123",
+    "date": "2023-02-28",
+    "year": 2023,
+    "datasets": [
+      {
+        "name": "Time-course expression matrix",
+        "description": "Single-cell expression across time",
+        "format": "MTX",
+        "downloadUrl": "/downloads/time-course.mtx",
+        "size": "1.8GB"
+      },
+      {
+        "name": "Cell lineage annotations",
+        "description": "Cell type and lineage labels",
+        "format": "CSV",
+        "downloadUrl": "/downloads/cell-lineage.csv",
+        "size": "75MB"
+      }
+    ]
+  }

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { cn } from "@/lib/utils"; 
+import { cn } from "@/app/lib/utils"; 
 import { Menu } from 'lucide-react'
 
 export default function Navigation() {
@@ -39,7 +39,7 @@ export default function Navigation() {
                         "px-3 py-2 text-sm font-medium transition-colors cursor-pointer",
                         isActive(item.path)
                           ? "border-b-2 border-(--foreground)"
-                          : "hover:text-blue-600"
+                          : "hover:border-(--foreground) hover:border-b-1"
                       )}
                     >
                       {item.label}
@@ -57,7 +57,7 @@ export default function Navigation() {
               className="p-2 text-sm rounded-md hover:bg-gray-100"
               aria-label="Toggle mobile menu"
             >
-            <Menu className="h-6 w-6" />
+              <Menu className="h-6 w-6" />
             </button>
           </div>
         </div>
