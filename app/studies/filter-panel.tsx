@@ -142,7 +142,7 @@ export default function FilterPanel({
   };
 
   return (
-    <aside className="w-64 shrink-0">
+    <aside className="w-full shrink-0">
       <Card>
         <CardHeader className="border-b">
           <div className="space-y-2">

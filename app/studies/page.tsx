@@ -170,7 +170,7 @@ const studies = allStudies.filter((study) => {
           </p>
         </div>
 
-        <div className="flex gap-8">
+        <div className="flex flex-col-reverse md:flex-row gap-8">
           {/* Studies List */}
           <div className="flex-1">
             <div className="grid md:grid-cols-2 gap-8">
@@ -196,7 +196,7 @@ const studies = allStudies.filter((study) => {
               )}
             </div>
           </div>
-          <div className="w-64 shrink-0">
+          <div className="w-full md:w-64 flex justify-center">
             {/* Filter Panel */}
             <FilterPanel
               options={options}

@@ -74,8 +74,8 @@ export default function Navigation() {
                   className={cn(
                     "block px-3 py-2 text-base font-medium transition-colors cursor-pointer",
                     isActive(item.path)
-                      ? "bg-(--background) text-(--foreground)"
-                      : "hover:bg-gray-50 hover:text-blue-600"
+                      ? "underline decoration-(--foreground) decoration-2 underline-offset-8"
+                      : "hover:border-(--foreground) hover:border-b-1"
                   )}
                 >
                   {item.label}
