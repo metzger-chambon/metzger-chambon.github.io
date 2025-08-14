@@ -9,7 +9,7 @@ git clone git@github.com:metzger-chambon/metzger-chambon.github.io.git
 npm install
 ```
 
-Run `next dev` or `npm run dev` locally or in codespaces to preview your work. You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run `next dev` or `npm run dev` locally to preview your work. You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 Keep the `main` branch as the stable production code that gets deployed to GitHub Pages.
 
