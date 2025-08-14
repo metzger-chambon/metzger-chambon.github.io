@@ -39,7 +39,7 @@ export default function StudyCard({ study }: StudyCardProps) {
       Neuroscience: "bg-(--foreground) text-(--background)",
       */
     };
-    return colors[app] || "bg-(--foreground) text-(--background)";
+    return colors[app] || "bg-(--accent-background) text-(--foreground)";
   };
 
   const getPlatformNameColor = (platform: string) => {
@@ -49,7 +49,7 @@ export default function StudyCard({ study }: StudyCardProps) {
     if (platform.includes("ATAC-seq")) return "bg-green-100 text-green-800";
     if (platform.includes("ChIP-seq")) return "bg-yellow-100 text-yellow-800";
     */
-    return "bg-(--foreground) text-(--background)";
+    return "bg-(--accent-background) text-(--foreground)";
   };
 
   const getPlatformSubColor = (platform: string) => {
@@ -59,7 +59,7 @@ export default function StudyCard({ study }: StudyCardProps) {
     if (platform.includes("ATAC-seq")) return "bg-green-100 text-green-800";
     if (platform.includes("ChIP-seq")) return "bg-yellow-100 text-yellow-800";
     */
-    return "bg-(--foreground) text-(--background)";
+    return "bg-(--accent-background) text-(--foreground)";
   };
 
   const handleAuthorClick = (authorName: string) => {
