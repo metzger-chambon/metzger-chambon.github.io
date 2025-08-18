@@ -7,7 +7,7 @@
       "biologicalApplication": ["Vitamin D", "Prostate Cancer"],
       "sequencingPlatform": {
         "name": "scRNA-seq",
-        "sub": "10x Genomics v5"
+        "sub": "10x Genomics v2"
       }
     },
     "imageUrl": "",

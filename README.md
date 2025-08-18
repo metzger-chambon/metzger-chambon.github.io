@@ -49,3 +49,7 @@ Once connected:
 
 ✅ Every time you open or push to a PR → Vercel builds the branch and gives you a live preview URL
 ✅ Merging to main deploys to your production site
+
+# Adding new datasets
+
+To add new dataset, you need to create a `json` file in `public/data/studies` repository. It must follow the schema described in `shared/schema.ts`. Then the name of the `json` file must be added to the list `index.json` in `public/data/studies` repository. The order of the list is the order in which the studies will be shown in the website.

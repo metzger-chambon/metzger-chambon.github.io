@@ -207,7 +207,7 @@ export default function FilterPanel({
           </div>
 
           <div>
-            <h3 className="font-semibold mb-2">Authors</h3>
+            <h3 className="font-semibold mb-2">Author</h3>
             {renderCheckboxList("author", options.authors)}
           </div>
         </CardContent>

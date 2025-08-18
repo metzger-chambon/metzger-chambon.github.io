@@ -7,7 +7,7 @@
     "biologicalApplication": ["Prostate Cancer"], 
     "sequencingPlatform": {
       "name": "scRNA-seq",
-      "sub": "10x Genomics v3"
+      "sub": "10x Genomics v2"
     }
   },
   "imageUrl": "",
