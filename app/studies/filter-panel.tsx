@@ -1,6 +1,7 @@
 "use client";
-
+import React from "react";
 import { Card, CardContent, CardHeader } from "@/app/components/card";
+import { Slider } from "@/app/components/slider";
 import { Button } from "@/app/components/button";
 import { Checkbox } from "@/app/components/checkbox";
 import { cn } from "@/app/components/utils";
@@ -9,13 +10,13 @@ interface FilterPanelProps {
   options: {
     biologicalApplications: string[];
     sequencingPlatforms: { value: string; label: string; indent: number }[];
-    years: string[];
+    years: number[];
     authors: string[];
   };
   filters: {
     biologicalApplication: string[]; // Already an array, so multiple categories can be selected
     sequencingPlatform: string[];
-    year: string[];
+    yearRange: [number, number];
     author: string[];
   };
   onFilterChange: (filters: any) => void;
@@ -32,6 +33,16 @@ export default function FilterPanel({
   totalCount,
   isLoading,
 }: FilterPanelProps) {
+  
+  const handleYearRangeChange = (newRange: number[]) => {
+    onFilterChange({
+      ...filters,
+      yearRange: [newRange[0], newRange[1]],
+    });
+  };
+
+  const minYear = Math.min(...options.years);
+  const maxYear = Math.max(...options.years);
 
   // Handle checkbox changes
   const handleCheckboxChange = (
@@ -175,7 +186,24 @@ export default function FilterPanel({
 
           <div>
             <h3 className="font-semibold mb-2">Year</h3>
-            {renderCheckboxList("year", options.years)}
+            <div className="flex space-x-2 items-center">
+              <Slider
+                value={filters.yearRange}
+                onValueChange={handleYearRangeChange}
+                min={minYear}
+                max={maxYear}
+                step={1}
+                className="w-full"
+              />
+            </div>
+            <div className="flex justify-between text-xs text-muted-foreground px-2">
+              <span>{filters.yearRange[0]}</span>
+              <span>{filters.yearRange[1]}</span>
+            </div>
+            <div className="flex justify-between text-xs text-muted-foreground px-2">
+              <span>Min: {minYear}</span>
+              <span>Max: {maxYear}</span>
+            </div>
           </div>
 
           <div>

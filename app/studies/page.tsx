@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { Study } from "@shared/schema";
 import { fetchAllStudies } from "@/app/lib/fetch-studies";
@@ -12,7 +12,7 @@ export default function StudiesPage() {
   const [filters, setFilters] = useState({
     biologicalApplication: [] as string[],
     sequencingPlatform: [] as string[],
-    year: [] as string[],
+    yearRange: [2000, new Date().getFullYear()] as [number, number], // Changed here
     author: [] as string[],
   });
 
@@ -52,20 +52,26 @@ export default function StudiesPage() {
     return options;
   };
 
-  const options = useMemo(
-    () => ({
+  const options = useMemo(() => {
+    return {
       biologicalApplications: unique(
-        allStudies
-          .flatMap((s) => s.categories?.biologicalApplication || []) // Flatten arrays and avoid undefined
+        allStudies.flatMap((s) => s.categories?.biologicalApplication || [])
       ),
       sequencingPlatforms: buildPlatformOptions(allStudies),
-      years: unique(allStudies.map((s) => String(s.year))).sort(
-        (a, b) => Number(b) - Number(a)
-      ),
+      years:  unique(allStudies.map((s) => s.year)).sort((a, b) => a - b),
       authors: unique(allStudies.flatMap((s) => s.authors)).filter(Boolean),
-    }),
-    [allStudies]
-  );
+    };
+  }, [allStudies]);
+
+  // Set initial yearRange once options.years is ready
+  useEffect(() => {
+    if (options.years.length > 0) {
+      setFilters((prev) => ({
+        ...prev,
+        yearRange: [options.years[0], options.years[options.years.length - 1]],
+      }));
+    }
+  }, [options.years]);
 
   const handleToggle = (key: keyof typeof filters, value: string) => {
     setFilters((prev) => {
@@ -83,7 +89,7 @@ export default function StudiesPage() {
     setFilters({
       biologicalApplication: [],
       sequencingPlatform: [],
-      year: [],
+      yearRange: [options.years[0], options.years[options.years.length - 1]], // Reset to full range
       author: [],
     });
 
@@ -120,10 +126,10 @@ export default function StudiesPage() {
           if (!matches) return false;
         }
 
-        // Year
+        // Year range filter
         if (
-          filters.year.length > 0 &&
-          !filters.year.includes(String(study.year))
+          filters.yearRange &&
+          (study.year < filters.yearRange[0] || study.year > filters.yearRange[1])
         )
           return false;
 
@@ -132,8 +138,7 @@ export default function StudiesPage() {
           const studyAuthors = Array.isArray(study.authors)
             ? study.authors
             : [study.authors];
-          if (!studyAuthors.some((a) => filters.author.includes(a)))
-            return false;
+          if (!studyAuthors.some((a) => filters.author.includes(a))) return false;
         }
 
         return true;
@@ -155,9 +160,8 @@ export default function StudiesPage() {
           <h1 className="text-4xl font-bold text-(--foreground) mb-4">
             Studies & Datasets
           </h1>
-          <p className="text-lg text-(--foreground) max-w-2xl mx-auto">
-            Explore our published research and available datasets from
-            computational biology studies
+          <p className="text-lg text-(--foreground) max-w-4xl mx-auto">
+            Explore our published research and available datasets
           </p>
         </div>
 
