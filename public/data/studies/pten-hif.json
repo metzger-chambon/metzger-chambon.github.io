@@ -1,0 +1,33 @@
+{
+  "id": "pten-hif",
+  "title": "Hypoxia-mediated stabilization of HIF1A in prostatic intraepithelial neoplasia promotes cell plasticity and malignant progression",
+  "description": "Pten(i)pe−/− (PTEN) and PtenL2/L2 (WT) mice prostates at 3 months after gene inactivation. This experiment helps elucidate the transcriptomic changes that occur in various cell types of early PIN lesions.",
+  "authors": ["Abu El Maaty MA"],
+  "categories": {
+    "biologicalApplication": "Prostate Cancer", 
+    "sequencingPlatform": {
+      "name": "scRNA-seq",
+      "sub": "10x Genomics v3"
+    }
+  },
+  "imageUrl": "",
+  "doi": "10.1126/sciadv.abo2295",
+  "date": "22/07/2022",
+  "year": 2022,
+  "datasets": [
+    {
+      "name": "SingleCellViz - PTEN vs WT",
+      "description": "",
+      "format": "",
+      "url": "https://metzger-chambon.igbmc.science/SingleCellViz/",
+      "size": ""
+    },
+    {
+      "name": "SingleCellViz - PTEN HIF vs PTEN",
+      "description": "",
+      "format": "",
+      "url": "https://metzger-chambon.igbmc.science/SingleCellViz/",
+      "size": ""
+    }
+  ]
+}

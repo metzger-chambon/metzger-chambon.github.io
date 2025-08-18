@@ -1,0 +1,26 @@
+{
+    "id": "gem-72",
+    "title": "Single-cell analyses unravel cell type–specific responses to a vitamin D analog in prostatic precancerous lesions",
+    "description": "Pten(i)pe−/− treated with Gemini-72, a vitamin D analog (Gem72) and non-treated (Control) mice prostates at 9 months after gene inactivation. This experiment unravels diversity of vitamin D’s effects on various cell types of prostatic precancerous lesions.",
+    "authors": ["Abu El Maaty MA"],
+    "categories": {
+      "biologicalApplication": "Vitamin D",
+      "sequencingPlatform": {
+        "name": "scRNA-seq",
+        "sub": "10x Genomics v5"
+      }
+    },
+    "imageUrl": "",
+    "doi": "10.1126/sciadv.abg5982",
+    "date": "30/07/2021",
+    "year": 2021,
+    "datasets": [
+        {
+        "name": "SingleCellViz",
+        "description": "",
+        "format": "",
+        "url": "https://metzger-chambon.igbmc.science/SingleCellViz/",
+        "size": ""
+        }
+    ]
+}

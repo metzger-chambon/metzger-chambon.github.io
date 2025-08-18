@@ -1,6 +1,4 @@
 [
-  "single-cell-trajectory.json",
-  "protein-interaction.json",
-  "embryonic-development.json",
-  "immune-cell-chromatin.json"
+  "gem-72.json",
+  "pten-hif.json"
 ]

@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/app/components/card";
 import { Badge } from "@/app/components/badge";
 import { ExternalLink } from "lucide-react";
 import type { Study, Dataset } from "@shared/schema";
+import ReactMarkdown from "react-markdown";
 
 interface StudyCardProps {
   study: Study;
@@ -10,24 +11,7 @@ interface StudyCardProps {
 export default function StudyCard({ study }: StudyCardProps) {
   const getImageUrl = (study: Study) => {
     if (study.imageUrl) return study.imageUrl;
-
-    // Default images based on biological application
-
-    /* Modify to image code the categories
-    const defaultImages = {
-      "Cancer Genomics": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=200",
-      "Neuroscience": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=200",
-      "Developmental Biology": "https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=200",
-      "Immunology": "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=200"
-    };
-    */
-
-    return (
-      defaultImages[
-        study.biologicalApplication as keyof typeof defaultImages
-      ] ||
-      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=200"
-    );
+    return null;
   };
 
   const getBiologicalApplicationColor = (app: string) => {
@@ -69,13 +53,16 @@ export default function StudyCard({ study }: StudyCardProps) {
 
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-      <img
-        src={getImageUrl(study)}
-        alt={study.title}
-        className="w-full h-48 object-cover"
-      />
+      {study.imageUrl && (
+        <img
+          src={study.imageUrl}
+          alt={study.title}
+          className="w-full h-48 object-cover"
+        />
+      )}
       <CardContent className="p-6">
-        <div className="flex items-center space-x-2 mb-3">
+        <h3 className="text-xl font-semibold">{study.title}</h3>
+        <div className="flex flex-wrap gap-2 mt-4 mb-4">
           <Badge
             className={getBiologicalApplicationColor(
               study.categories.biologicalApplication
@@ -101,30 +88,32 @@ export default function StudyCard({ study }: StudyCardProps) {
           )}
         </div>
 
-        <h3 className="text-xl font-semibold mb-3">{study.title}</h3>
-        <p className="text-(--foreground) mb-4 line-clamp-3">
-          {study.description}
-        </p>
+        <div className="text-(--foreground) text-m mb-4">
+          <ReactMarkdown>{study.description}</ReactMarkdown>
+        </div>
 
         <div className="mb-4">
-          <h4 className="text-sm font-medium text-(--forground) mb-2">
-            Available Datasets:
+          <h4 className="text-l font-semibold text-(--forground) mb-2">
+            Explore Datasets:
           </h4>
           <div className="space-y-1">
             {Array.isArray(study.datasets) &&
               study.datasets.map((dataset: Dataset, index: number) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between text-sm"
+                  className="flex items-center justify-between text-m"
                 >
-                  <span className="text-(--foreground)">{dataset.name}</span>
-                  <a
-                    href={dataset.downloadUrl || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Download
-                  </a>
+                  <span className="text-(--foreground) flex items-center">
+                    {dataset.name}
+                    <a
+                      href={dataset.url || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ml-2 text-(--foreground) hover:text-(--accent-foreground)"
+                    >
+                      <ExternalLink className="h-5 w-5" />
+                    </a>
+                  </span>
                 </div>
               ))}
           </div>
@@ -135,7 +124,16 @@ export default function StudyCard({ study }: StudyCardProps) {
             {Array.isArray(study.authors) ? study.authors[0] : study.authors} | 
             {study.year}
           </div>
-          <div className="flex items-center space-x-2">{study.doi}</div>
+          <div className="flex items-center space-x-2">
+            <a
+              href={`https://doi.org/${study.doi}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2 text-(--foreground) hover:text-(--accent-foreground)"
+            >
+              {study.doi}
+            </a>
+          </div>
         </div>
       </CardContent>
     </Card>
