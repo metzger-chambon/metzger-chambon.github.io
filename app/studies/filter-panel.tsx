@@ -13,7 +13,7 @@ interface FilterPanelProps {
     authors: string[];
   };
   filters: {
-    biologicalApplication: string[];
+    biologicalApplication: string[]; // Already an array, so multiple categories can be selected
     sequencingPlatform: string[];
     year: string[];
     author: string[];
@@ -32,14 +32,14 @@ export default function FilterPanel({
   totalCount,
   isLoading,
 }: FilterPanelProps) {
-  /**
-   * Handle checkbox changes with parent-child linking logic.
-   */
+
+  // Handle checkbox changes
   const handleCheckboxChange = (
     categoryKey: keyof typeof filters,
     value: string,
     checked: boolean
   ) => {
+   
     onFilterChange((prev: typeof filters) => {
       const newFilters = { ...prev };
 
@@ -100,14 +100,11 @@ export default function FilterPanel({
           );
         }
       }
-
       return newFilters;
     });
   };
 
-  /**
-   * Render checkbox list with optional hierarchy markers
-   */
+  // Render checkbox list
   const renderCheckboxList = (
     key: keyof typeof filters,
     items: (string | { value: string; label: string; indent?: number })[]
@@ -126,7 +123,7 @@ export default function FilterPanel({
               style={{ paddingLeft: `${indent * 16}px` }}
             >
               <Checkbox
-                checked={filters[key].includes(value)}
+                checked={filters[key].includes(value)} // Check if the value is in the selected filters
                 onCheckedChange={(checked) =>
                   handleCheckboxChange(key, value, Boolean(checked))
                 }
@@ -163,8 +160,8 @@ export default function FilterPanel({
           <div>
             <h3 className="font-semibold mb-2">Biological Application</h3>
             {renderCheckboxList(
-              "biologicalApplication",
-              options.biologicalApplications
+              "biologicalApplication", // The key remains the same
+              options.biologicalApplications // Now passing the list of options
             )}
           </div>
 

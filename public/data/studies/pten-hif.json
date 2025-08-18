@@ -4,7 +4,7 @@
   "description": "Pten(i)pe−/− (PTEN) and PtenL2/L2 (WT) mice prostates at 3 months after gene inactivation. This experiment helps elucidate the transcriptomic changes that occur in various cell types of early PIN lesions.",
   "authors": ["Abu El Maaty MA"],
   "categories": {
-    "biologicalApplication": "Prostate Cancer", 
+    "biologicalApplication": ["Prostate Cancer"], 
     "sequencingPlatform": {
       "name": "scRNA-seq",
       "sub": "10x Genomics v3"

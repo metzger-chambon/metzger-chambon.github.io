@@ -4,7 +4,7 @@
     "description": "Pten(i)pe−/− treated with Gemini-72, a vitamin D analog (Gem72) and non-treated (Control) mice prostates at 9 months after gene inactivation. This experiment unravels diversity of vitamin D’s effects on various cell types of prostatic precancerous lesions.",
     "authors": ["Abu El Maaty MA"],
     "categories": {
-      "biologicalApplication": "Vitamin D",
+      "biologicalApplication": ["Vitamin D", "Prostate Cancer"],
       "sequencingPlatform": {
         "name": "scRNA-seq",
         "sub": "10x Genomics v5"

@@ -29,7 +29,7 @@ export const studies = pgTable("studies", {
   date: text("date").notNull(),
   year: integer("year").notNull(),
   datasets: jsonb("datasets").notNull(), // Array of dataset objects
-  biologicalApplication: text("biological_application").notNull(),
+  biologicalApplication: text("biological_application").array().notNull(), // for PostgreSQL  sequencingPlatform: text("sequencing_platform").notNull(),
   sequencingPlatform: text("sequencing_platform").notNull(),
 });
 
@@ -72,8 +72,8 @@ export type NewsArticle = typeof newsArticles.$inferSelect;
 export type Dataset = {
   name: string;
   description: string;
-  format: string;
-  downloadUrl: string;
+  format?: string;
+  url: string;
   size?: string;
 };
 

@@ -63,13 +63,12 @@ export default function StudyCard({ study }: StudyCardProps) {
       <CardContent className="p-6">
         <h3 className="text-xl font-semibold">{study.title}</h3>
         <div className="flex flex-wrap gap-2 mt-4 mb-4">
-          <Badge
-            className={getBiologicalApplicationColor(
-              study.categories.biologicalApplication
-            )}
-          >
-            {study.categories.biologicalApplication}
-          </Badge>
+          {Array.isArray(study.categories.biologicalApplication) &&
+            study.categories.biologicalApplication.map((app) => (
+              <Badge key={app} className={getBiologicalApplicationColor(app)}>
+                {app}
+              </Badge>
+            ))}
           <Badge
             className={getPlatformNameColor(
               study.categories.sequencingPlatform.name

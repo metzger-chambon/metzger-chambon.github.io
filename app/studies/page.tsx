@@ -56,8 +56,7 @@ export default function StudiesPage() {
     () => ({
       biologicalApplications: unique(
         allStudies
-          .map((s) => s.categories?.biologicalApplication)
-          .filter(Boolean)
+          .flatMap((s) => s.categories?.biologicalApplication || []) // Flatten arrays and avoid undefined
       ),
       sequencingPlatforms: buildPlatformOptions(allStudies),
       years: unique(allStudies.map((s) => String(s.year))).sort(
@@ -97,8 +96,8 @@ export default function StudiesPage() {
         // Biological Application
         if (
           filters.biologicalApplication.length > 0 &&
-          !filters.biologicalApplication.includes(
-            study.categories?.biologicalApplication ?? ""
+          !filters.biologicalApplication.some((filter) =>
+            study.categories?.biologicalApplication?.includes(filter)
           )
         )
           return false;
