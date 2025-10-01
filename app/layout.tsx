@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Metzger Lab Website",
-  description: "Our laboratory website is under construction.",
+  title: "Group of Gilles Laverny Website",
+  description: "Group of Gilles Laverny (IGBMC) Website. Investigating the molecular mechanisms by which vitamin D signaling influences cellular processes and disease progression.",
 };
 
 export default function RootLayout({

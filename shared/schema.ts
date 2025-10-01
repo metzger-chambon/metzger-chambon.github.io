@@ -30,7 +30,7 @@ export const studies = pgTable("studies", {
   year: integer("year").notNull(),
   datasets: jsonb("datasets").notNull(), // Array of dataset objects
   biologicalApplication: text("biological_application").array().notNull(), // for PostgreSQL  sequencingPlatform: text("sequencing_platform").notNull(),
-  sequencingPlatform: text("sequencing_platform").notNull(),
+  sequencingPlatform: text("sequencing_platform").array().notNull(),
 });
 
 export const newsArticles = pgTable("news_articles", {
@@ -82,5 +82,5 @@ export type Category = {
   sequencingPlatform: {
     name: string;         // e.g. "scRNA-seq"
     sub?: string;         // e.g. "10x Genomics v3"
-  };
+  }[];
 };

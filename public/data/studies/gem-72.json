@@ -5,12 +5,12 @@
     "authors": ["Abu El Maaty, MA"],
     "categories": {
       "biologicalApplication": ["Vitamin D", "Prostate Cancer"],
-      "sequencingPlatform": {
+      "sequencingPlatform": [{
         "name": "scRNA-seq",
         "sub": "10x Genomics v2"
-      }
+      }]
     },
-    "imageUrl": "",
+    "imageUrl": "/images/gem-72.png",
     "doi": "10.1126/sciadv.abg5982",
     "date": "30/07/2021",
     "year": 2021,
@@ -19,7 +19,7 @@
         "name": "SingleCellViz - Gem72",
         "description": "",
         "format": "",
-        "url": "https://metzger-chambon.igbmc.science/SingleCellViz/",
+        "url": "https://metzger-chambon.igbmc.science/SingleCellViz-Gem72/",
         "size": ""
         }
     ]

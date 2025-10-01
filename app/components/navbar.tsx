@@ -25,8 +25,8 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold">
-              🔬 Metzger Lab 
+            <Link href="/" className="text-l font-bold">
+              Group of Gilles Laverny
             </Link>
             <div className="hidden md:block ml-10">
               <div className="flex space-x-6">

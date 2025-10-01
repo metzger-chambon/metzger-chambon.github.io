@@ -1,4 +1,4 @@
-# Metzger-chambon lab
+# Website
 
 ## Getting Started
 

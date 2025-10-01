@@ -5,12 +5,12 @@
   "authors": ["Abu El Maaty, MA"],
   "categories": {
     "biologicalApplication": ["Prostate Cancer"], 
-    "sequencingPlatform": {
+    "sequencingPlatform": [{
       "name": "scRNA-seq",
       "sub": "10x Genomics v2"
-    }
+    }]
   },
-  "imageUrl": "",
+  "imageUrl": "/images/pten-hif.png",
   "doi": "10.1126/sciadv.abo2295",
   "date": "22/07/2022",
   "year": 2022,
@@ -19,14 +19,14 @@
       "name": "SingleCellViz - PTEN vs WT",
       "description": "",
       "format": "",
-      "url": "https://metzger-chambon.igbmc.science/SingleCellViz/",
+      "url": "https://metzger-chambon.igbmc.science/SingleCellViz-PtenHif/",
       "size": ""
     },
     {
       "name": "SingleCellViz - PTEN HIF vs PTEN",
       "description": "",
       "format": "",
-      "url": "https://metzger-chambon.igbmc.science/SingleCellViz/",
+      "url": "https://metzger-chambon.igbmc.science/SingleCellViz-PtenHif/",
       "size": ""
     }
   ]

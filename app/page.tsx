@@ -2,11 +2,9 @@ import Link from "next/link";
 import { Button } from "@/app/components/button";
 import { Card, CardContent } from "@/app/components/card";
 import {
-  Dna,
-  Network,
-  TrendingUp,
-  Microscope,
-  ArrowRight,
+  Search,
+  Activity,
+  ExternalLink
 } from "lucide-react";
 
 export default function Home() {
@@ -20,8 +18,16 @@ export default function Home() {
         />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Pathophysiological Roles of Vitamin D Signaling Pathways
+            <h1 className="text-2xl md:text-4xl font-bold mb-6 flex items-center justify-center gap-2">
+              <a
+                href="https://www.igbmc.fr/en/recherche/teams/subgroups/pathophysiological-role-of-vitamin-d-signalling"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="External link to group page"
+              >
+                <span> Group of Gilles Laverny - IGBMC </span> 
+                <ExternalLink className="inline align-middle"/>
+              </a>
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
               Investigating the molecular mechanisms by which vitamin D
@@ -44,10 +50,6 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-(--foreground) mb-4">
               Research Highlights
             </h2>
-            <p className="text-lg text-(--foreground) max-w-2xl mx-auto">
-              Our lab focuses on understanding the molecular mechanisms
-              underlying vitamin D signaling and its impact on health.
-            </p>
           </div>
           <div className="space-y-12">
             {/* Highlight 1 */}
@@ -61,19 +63,25 @@ export default function Home() {
                   cancers and autoimmune diseases. To date, the mechanisms
                   underlying the activities of vitamin D have not been
                   elucidated.
+                  This lack of understanding limits its clinical use, since the
+                  doses required for the treatment of cancers or autoimmune
+                  diseases induce hypercalcemia; resulting in calcification of
+                  the kidneys, heart and vessels, leading to dysfunction of
+                  these organs.
                 </p>
               </div>
               <Card className="order-1 md:order-2">
                 <CardContent className="p-6 ">
-                  <div className="w-12 h-12 bg-(--accent-background) rounded-lg flex items-center justify-center mb-4">
-                    <Dna className="text-white text-xl" />
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-12 h-12 bg-(--accent-background) rounded-lg flex items-center justify-center">
+                      <Search className="text-white text-xl" />
+                    </div>
+                    <h3 className="text-xl font-semibold m-0">
+                      Exploring disease progression
+                    </h3>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">
-                    Genomic Interactions
-                  </h3>
                   <p className="text-(--foreground)">
-                    Exploring how vitamin D receptors interact with DNA to
-                    regulate gene expression and cellular function.
+                    Identification of the mechanisms underlying disease initiation and progression.
                   </p>
                 </CardContent>
               </Card>
@@ -83,32 +91,21 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <Card>
                 <CardContent className="p-6">
-                  <div className="w-12 h-12 bg-(--accent-background) rounded-lg flex items-center justify-center mb-4">
-                    <Network className="text-white text-xl" />
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-12 h-12 bg-(--accent-background) rounded-lg flex items-center justify-center">
+                      <Activity className="text-white text-xl" />
+                    </div>
+                    <h3 className="text-xl font-semibold m-0">
+                      Unravelling Vitamin D activities
+                    </h3>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">
-                    Signal Transduction
-                  </h3>
                   <p className="text-(--foreground)">
-                    Investigating the pathways through which vitamin D signaling
-                    influences cellular responses.
+                    Studying how disruptions in vitamin D signaling contribute
+                    to disease development and progression.
                   </p>
                 </CardContent>
               </Card>
               <div>
-                <p className="text-lg leading-relaxed text-(--foreground)">
-                  This lack of understanding limits its clinical use, since the
-                  doses required for the treatment of cancers or autoimmune
-                  diseases induce hypercalcemia; resulting in calcification of
-                  the kidneys, heart and vessels, leading to dysfunction of
-                  these organs.
-                </p>
-              </div>
-            </div>
-
-            {/* Highlight 3 */}
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="order-2 md:order-1">
                 <p className="text-lg leading-relaxed text-(--foreground)">
                   Our group is interested in understanding how vitamin D
                   controls calcium homeostasis and tumor progression. We focus
@@ -122,21 +119,8 @@ export default function Home() {
                   treatments.
                 </p>
               </div>
-              <Card className="order-1 md:order-2">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 bg-(--accent-background) rounded-lg flex items-center justify-center mb-4">
-                    <TrendingUp className="text-white text-xl" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">
-                    Disease Mechanisms
-                  </h3>
-                  <p className="text-(--foreground)">
-                    Studying how disruptions in vitamin D signaling contribute
-                    to disease development and progression.
-                  </p>
-                </CardContent>
-              </Card>
             </div>
+
           </div>
         </div>
       </section>

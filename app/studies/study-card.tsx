@@ -1,3 +1,4 @@
+import React from "react";
 import { Card, CardContent } from "@/app/components/card";
 import { Badge } from "@/app/components/badge";
 import { ExternalLink } from "lucide-react";
@@ -61,7 +62,16 @@ export default function StudyCard({ study }: StudyCardProps) {
         />
       )}
       <CardContent className="p-6">
-        <h3 className="text-xl font-semibold">{study.title}</h3>
+        <h3 className="text-xl font-semibold">
+          <a
+            href={`https://doi.org/${study.doi}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-(--accent-foreground) transition-colors"
+          >
+            {study.title}
+          </a>
+        </h3>
         <div className="flex flex-wrap gap-2 mt-4 mb-4">
           {Array.isArray(study.categories.biologicalApplication) &&
             study.categories.biologicalApplication.map((app) => (
@@ -69,22 +79,18 @@ export default function StudyCard({ study }: StudyCardProps) {
                 {app}
               </Badge>
             ))}
-          <Badge
-            className={getPlatformNameColor(
-              study.categories.sequencingPlatform.name
-            )}
-          >
-            {study.categories.sequencingPlatform.name}
-          </Badge>
-          {study.categories.sequencingPlatform.sub && (
-            <Badge
-              className={getPlatformSubColor(
-                study.categories.sequencingPlatform.sub
-              )}
-            >
-              {study.categories.sequencingPlatform.sub}
-            </Badge>
-          )}
+
+            
+          {Array.isArray(study.categories.sequencingPlatform) &&
+          study.categories.sequencingPlatform.map((platform, idx) => (
+            <React.Fragment key={platform.name + (platform.sub || "") + idx}>
+              <Badge className={getPlatformNameColor(platform.name)}>
+                {platform.name}
+                {platform.sub ? ` - ${platform.sub}` : ""}
+              </Badge>
+            </React.Fragment>
+          ))}
+
         </div>
 
         <div className="text-(--foreground) text-m mb-4">

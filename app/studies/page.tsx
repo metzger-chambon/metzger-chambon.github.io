@@ -31,14 +31,14 @@ export default function StudiesPage() {
     const hierarchy: Record<string, Set<string>> = {};
 
     for (const study of studies) {
-      const platform = study.categories?.sequencingPlatform;
-      if (!platform?.name) continue;
-
-      const name = platform.name;
-      const sub = platform.sub;
-
-      if (!hierarchy[name]) hierarchy[name] = new Set();
-      if (sub) hierarchy[name].add(sub);
+      const platforms = study.categories?.sequencingPlatform || [];
+      for (const platform of platforms) {
+        if (!platform?.name) continue;
+        const name = platform.name;
+        const sub = platform.sub;
+        if (!hierarchy[name]) hierarchy[name] = new Set();
+        if (sub) hierarchy[name].add(sub);
+      }
     }
 
     const options: { value: string; label: string; indent: number }[] = [];
@@ -110,18 +110,18 @@ export default function StudiesPage() {
 
         // Sequencing Platform
         if (filters.sequencingPlatform.length > 0) {
-          const platform = study.categories?.sequencingPlatform;
-          if (!platform?.name) return false;
-
-          const fullValue = platform.sub
-            ? `${platform.name}/${platform.sub}`
-            : platform.name;
-          const matches = filters.sequencingPlatform.some((selected) => {
-            if (!selected.includes("/"))
-              return (
-                fullValue === selected || fullValue.startsWith(`${selected}/`)
-              );
-            return fullValue === selected;
+          const platforms = study.categories?.sequencingPlatform || [];
+          const matches = platforms.some((platform) => {
+            const fullValue = platform.sub
+              ? `${platform.name}/${platform.sub}`
+              : platform.name;
+            return filters.sequencingPlatform.some((selected) => {
+              if (!selected.includes("/"))
+                return (
+                  fullValue === selected || fullValue.startsWith(`${selected}/`)
+                );
+              return fullValue === selected;
+            });
           });
           if (!matches) return false;
         }
