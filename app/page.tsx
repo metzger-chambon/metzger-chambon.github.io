@@ -5,7 +5,7 @@ import {
   Dna,
   Network,
   TrendingUp,
-  ExternalLink,
+  Microscope,
   ArrowRight,
 } from "lucide-react";
 
@@ -29,18 +29,8 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/studies">
-                <Button size="lg" variant="outline">
-                  Explore Our Research
-                </Button>
-              </Link>
-              <Link href="/members">
-                <Button size="lg" variant="outline">
-                  Meet Our Team
-                </Button>
-              </Link>
-              <Link href="/members">
-                <Button size="lg" variant="outline">
-                  Get Latest News
+                <Button size="xl" variant="outline">
+                  <span className="text-lg">Explore Our Research</span>
                 </Button>
               </Link>
             </div>

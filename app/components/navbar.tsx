@@ -12,9 +12,7 @@ export default function Navigation() {
 
   const navItems = [
     { path: "/", label: "Home", id: "home" },
-    { path: "/members", label: "Lab Members", id: "members" },
     { path: "/studies", label: "Studies & Datasets", id: "studies" },
-    { path: "/news", label: "News", id: "news" },
   ];
 
   const isActive = (path: string) => {
@@ -28,7 +26,7 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/" className="text-xl font-bold">
-              🔬 Metzger Lab
+              🔬 Metzger Lab 
             </Link>
             <div className="hidden md:block ml-10">
               <div className="flex space-x-6">
