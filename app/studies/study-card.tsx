@@ -114,17 +114,15 @@ export default function StudyCard({ study }: StudyCardProps) {
                   key={index}
                   className="flex items-center justify-between text-m"
                 >
-                  <span className="text-(--foreground) flex items-center">
+                  <a
+                    href={dataset.url || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-(--foreground) hover:text-(--accent-foreground) flex items-center"
+                  >
                     {dataset.name}
-                    <a
-                      href={dataset.url || "#"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ml-2 text-(--foreground) hover:text-(--accent-foreground)"
-                    >
-                      <ExternalLink className="h-5 w-5" />
-                    </a>
-                  </span>
+                    <ExternalLink className="h-5 w-5 ml-2" />
+                  </a>
                 </div>
               ))}
           </div>
