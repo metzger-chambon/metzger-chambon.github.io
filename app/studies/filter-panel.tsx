@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader } from "@/app/components/card";
 import { Slider } from "@/app/components/slider";
 import { Button } from "@/app/components/button";
 import { Checkbox } from "@/app/components/checkbox";
-import { cn } from "@/app/components/utils";
 
 interface FilterPanelProps {
   options: {
@@ -50,9 +49,11 @@ export default function FilterPanel({
     value: string,
     checked: boolean
   ) => {
-   
-    onFilterChange((prev: typeof filters) => {
-      const newFilters = { ...prev };
+  // Do not handle yearRange here
+  if (categoryKey === "yearRange") return;
+
+  onFilterChange((prev: typeof filters) => {
+    const newFilters = { ...prev };
 
       const categoryOptions =
         categoryKey === "sequencingPlatform" ? options.sequencingPlatforms : [];
@@ -127,6 +128,10 @@ export default function FilterPanel({
           const label = typeof item === "string" ? item : item.label;
           const indent = typeof item === "string" ? 0 : item.indent ?? 0;
 
+          const isStringArrayKey =
+            key === "biologicalApplication" ||
+            key === "sequencingPlatform" ||
+            key === "author";
           return (
             <label
               key={value}
@@ -134,7 +139,7 @@ export default function FilterPanel({
               style={{ paddingLeft: `${indent * 16}px` }}
             >
               <Checkbox
-                checked={filters[key].includes(value)} // Check if the value is in the selected filters
+                checked={isStringArrayKey ? (filters[key] as string[]).includes(value) : false}
                 onCheckedChange={(checked) =>
                   handleCheckboxChange(key, value, Boolean(checked))
                 }

@@ -73,23 +73,29 @@ export default function StudyCard({ study }: StudyCardProps) {
           </a>
         </h3>
         <div className="flex flex-wrap gap-2 mt-4 mb-4">
-          {Array.isArray(study.categories.biologicalApplication) &&
-            study.categories.biologicalApplication.map((app) => (
-              <Badge key={app} className={getBiologicalApplicationColor(app)}>
-                {app}
-              </Badge>
-            ))}
+          {(() => {
+            const categories = study.categories as { biologicalApplication?: string[] };
+            return Array.isArray(categories.biologicalApplication) &&
+              categories.biologicalApplication.map((app: string) => (
+                <Badge key={app} className={getBiologicalApplicationColor(app)}>
+                  {app}
+                </Badge>
+              ));
+          })()}
 
             
-          {Array.isArray(study.categories.sequencingPlatform) &&
-          study.categories.sequencingPlatform.map((platform, idx) => (
-            <React.Fragment key={platform.name + (platform.sub || "") + idx}>
-              <Badge className={getPlatformNameColor(platform.name)}>
-                {platform.name}
-                {platform.sub ? ` - ${platform.sub}` : ""}
-              </Badge>
-            </React.Fragment>
-          ))}
+          {(() => {
+            const categories = study.categories as { sequencingPlatform?: { name: string; sub?: string }[] };
+            return Array.isArray(categories.sequencingPlatform) &&
+              categories.sequencingPlatform.map((platform: { name: string; sub?: string }, idx: number) => (
+                <React.Fragment key={platform.name + (platform.sub || "") + idx}>
+                  <Badge className={getPlatformNameColor(platform.name)}>
+                    {platform.name}
+                    {platform.sub ? ` - ${platform.sub}` : ""}
+                  </Badge>
+                </React.Fragment>
+              ));
+          })()}
 
         </div>
 

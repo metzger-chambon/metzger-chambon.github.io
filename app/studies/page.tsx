@@ -31,7 +31,8 @@ export default function StudiesPage() {
     const hierarchy: Record<string, Set<string>> = {};
 
     for (const study of studies) {
-      const platforms = study.categories?.sequencingPlatform || [];
+      const categories = study.categories as { sequencingPlatform?: { name: string; sub?: string }[] };
+      const platforms = categories?.sequencingPlatform || [];
       for (const platform of platforms) {
         if (!platform?.name) continue;
         const name = platform.name;
@@ -55,11 +56,14 @@ export default function StudiesPage() {
   const options = useMemo(() => {
     return {
       biologicalApplications: unique(
-        allStudies.flatMap((s) => s.categories?.biologicalApplication || [])
+        allStudies.flatMap((s) => {
+          const categories = s.categories as { biologicalApplication?: string[] };
+          return categories?.biologicalApplication || [];
+        })
       ),
       sequencingPlatforms: buildPlatformOptions(allStudies),
       years:  unique(allStudies.map((s) => s.year)).sort((a, b) => a - b),
-      authors: unique(allStudies.flatMap((s) => s.authors)).filter(Boolean),
+      authors: unique(allStudies.flatMap((s) => s.authors as string[])).filter(Boolean),
     };
   }, [allStudies]);
 
@@ -74,13 +78,20 @@ export default function StudiesPage() {
   }, [options.years]);
 
   const handleToggle = (key: keyof typeof filters, value: string) => {
+    // Ne traiter que les clés string[]
+    if (
+      key !== "biologicalApplication" &&
+      key !== "sequencingPlatform" &&
+      key !== "author"
+    ) {
+      return;
+    }
     setFilters((prev) => {
-      const exists = prev[key].includes(value);
+      const arr = prev[key] as string[];
+      const exists = arr.includes(value);
       return {
         ...prev,
-        [key]: exists
-          ? prev[key].filter((v) => v !== value)
-          : [...prev[key], value],
+        [key]: exists ? arr.filter((v) => v !== value) : [...arr, value],
       };
     });
   };
@@ -102,20 +113,22 @@ export default function StudiesPage() {
         // Biological Application
         if (
           filters.biologicalApplication.length > 0 &&
-          !filters.biologicalApplication.some((filter) =>
-            study.categories?.biologicalApplication?.includes(filter)
-          )
+          !filters.biologicalApplication.some((filter) => {
+            const categories = study.categories as { biologicalApplication?: string[] };
+            return categories?.biologicalApplication?.includes(filter);
+          })
         )
           return false;
 
         // Sequencing Platform
         if (filters.sequencingPlatform.length > 0) {
-          const platforms = study.categories?.sequencingPlatform || [];
-          const matches = platforms.some((platform) => {
+          const categories = study.categories as { sequencingPlatform?: { name: string; sub?: string }[] };
+          const platforms = categories?.sequencingPlatform || [];
+          const matches = platforms.some((platform: { name: string; sub?: string }) => {
             const fullValue = platform.sub
               ? `${platform.name}/${platform.sub}`
               : platform.name;
-            return filters.sequencingPlatform.some((selected) => {
+            return filters.sequencingPlatform.some((selected: string) => {
               if (!selected.includes("/"))
                 return (
                   fullValue === selected || fullValue.startsWith(`${selected}/`)
@@ -138,7 +151,7 @@ export default function StudiesPage() {
           const studyAuthors = Array.isArray(study.authors)
             ? study.authors
             : [study.authors];
-          if (!studyAuthors.some((a) => filters.author.includes(a))) return false;
+          if (!studyAuthors.some((a: string) => filters.author.includes(a))) return false;
         }
 
         return true;
@@ -181,11 +194,7 @@ export default function StudiesPage() {
           {/* Studies List */}
           <div className="flex-1 overflow-auto">
             <div className="grid md:grid-cols-2 gap-8">
-              {studies.length > 0 ? (
-                studies.map((study) => (
-                  <StudyCard key={study.id} study={study} />
-                ))
-              ) : (
+              {!isLoading && studies.length === 0 ? (
                 <div className="text-center py-12 md:col-span-2">
                   <h3 className="text-lg font-semibold text-(--foreground) mb-2">
                     No studies found
@@ -200,6 +209,10 @@ export default function StudiesPage() {
                     </Button>
                   )}
                 </div>
+              ) : (
+                studies.map((study) => (
+                  <StudyCard key={study.id} study={study} />
+                ))
               )}
             </div>
           </div>

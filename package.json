@@ -13,6 +13,8 @@
     "@tanstack/react-query": "^5.84.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "drizzle-orm": "^0.44.5",
+    "drizzle-zod": "^0.8.3",
     "lucide-react": "^0.535.0",
     "next": "15.4.5",
     "radix-ui": "^1.4.3",
@@ -21,7 +23,8 @@
     "react-markdown": "^10.1.0",
     "react-range": "^1.10.0",
     "tailwind-merge": "^3.3.1",
-    "wouter": "^3.7.1"
+    "wouter": "^3.7.1",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",
