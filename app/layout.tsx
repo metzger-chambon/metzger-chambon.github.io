@@ -1,6 +1,10 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import Navbar from './components/navbar'
+import Footer from './components/footer'
+import Providers from "./providers"
+import "./globals.css"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Metzger Lab Website - Coming Soon",
-  description: "Our laboratory website is under construction.",
+  title: "Group of Gilles Laverny Website",
+  description: "Group of Gilles Laverny (IGBMC) Website. Investigating the molecular mechanisms by which vitamin D signaling influences cellular processes and disease progression.",
 };
 
 export default function RootLayout({
@@ -23,11 +27,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full bg-(--background) text-(--foreground)">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} h-full overflow-y-auto overflow-x-hidden antialiased`}
       >
-        {children}
+        <Providers>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
